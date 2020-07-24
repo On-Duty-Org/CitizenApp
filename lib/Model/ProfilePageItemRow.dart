@@ -49,7 +49,7 @@ class ProfilePageItemRow extends StatelessWidget {
       child: new Container(
         child: itemCardContent,
         height: 124.0,
-        margin: new EdgeInsets.only(left: 20.0),
+        margin: new EdgeInsets.only(left: 20.0, right: 20.0),
         decoration: new BoxDecoration(
             color: new Color(0xFF1D1E33),
             shape: BoxShape.rectangle,
