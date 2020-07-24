@@ -8,16 +8,6 @@ class ProfilePageItemRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final itemThumbnail = new Container(
-    //   margin: new EdgeInsets.symmetric(vertical: 16.0),
-    //   alignment: FractionalOffset.centerLeft,
-    //   child: new Image(
-    //     image: new AssetImage("assets/img/citizen-app.png"),
-    //     height: 92.0,
-    //     width: 92.0,
-    //   ),
-    // );
-
     final baseTextStyle = const TextStyle(
       fontFamily: 'Poppins',
     );
