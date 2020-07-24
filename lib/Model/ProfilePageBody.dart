@@ -1,33 +1,38 @@
+import 'package:citizen_app/Screens/HomePage.dart';
 import 'package:flutter/material.dart';
-import 'HomePageItem.dart';
-import 'HomePageItemRow.dart';
+import 'ProfilePageItem.dart';
+import 'ProfilePageItemRow.dart';
 
-class HomePageBody extends StatelessWidget {
+class ProfilePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Expanded(
       child: new Container(
-        color: Color(0xFF111328),
-        child: new CustomScrollView(
-          scrollDirection: Axis.vertical,
-          slivers: <Widget>[
-            new SliverAppBar(
-                pinned: true,
-                expandedHeight: 66.0,
-                flexibleSpace: GradientAppBar("Citizen App")),
-            new SliverPadding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
-              sliver: new SliverFixedExtentList(
-                itemExtent: 152.0,
-                delegate: new SliverChildBuilderDelegate(
-                  (context, index) => new HomePageItemRow(items[index]),
-                  childCount: items.length,
-                ),
+          color: Color(0xFF111328),
+          child: new Stack(
+            children: <Widget>[
+              new CustomScrollView(
+                scrollDirection: Axis.vertical,
+                slivers: <Widget>[
+                  new SliverAppBar(
+                      pinned: true,
+                      expandedHeight: 66.0,
+                      flexibleSpace: GradientAppBar("Profile")),
+                  new SliverPadding(
+                    padding: const EdgeInsets.symmetric(vertical: 24.0),
+                    sliver: new SliverFixedExtentList(
+                      itemExtent: 152.0,
+                      delegate: new SliverChildBuilderDelegate(
+                        (context, index) =>
+                            new ProfilePageItemRow(items[index]),
+                        childCount: items.length,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          )),
     );
   }
 }
