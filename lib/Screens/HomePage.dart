@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:citizen_app/Model/HomePageBody.dart';
+import '../constants.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -30,21 +31,10 @@ class GradientAppBar extends StatelessWidget {
       child: new Center(
         child: new Text(
           title,
-          style: const TextStyle(
-              color: Colors.white,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w600,
-              fontSize: 36.0),
+          style: kAppBarTextStyle,
         ),
       ),
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
-            colors: [const Color(0xFF3366FF), const Color(0xFF00CCFF)],
-            begin: const FractionalOffset(0.0, 0.0),
-            end: const FractionalOffset(1.0, 0.0),
-            stops: [0.0, 1.0],
-            tileMode: TileMode.clamp),
-      ),
+      decoration: kAppBarBoxDecoration,
     );
   }
 }

@@ -86,6 +86,7 @@ class FrontPage extends StatelessWidget {
               child: Text('GO'),
             )
           ],
-        ));
+        ),
+    );
   }
 }

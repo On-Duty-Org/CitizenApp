@@ -55,7 +55,11 @@ class HomePageItemRow extends StatelessWidget {
       ),
     );
 
-    final itemCard = new Container(
+    final itemCard = new GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, item.routeId);
+      },
+      child :new Container(
       child: itemCardContent,
       height: 124.0,
       margin: new EdgeInsets.only(left: 46.0),
@@ -69,6 +73,7 @@ class HomePageItemRow extends StatelessWidget {
                 blurRadius: 10.0,
                 offset: new Offset(0.0, 10.0))
           ]),
+      ),
     );
 
     return new Container(
