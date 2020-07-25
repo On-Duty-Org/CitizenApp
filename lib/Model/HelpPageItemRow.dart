@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'HomePageItem.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'HelpPageItem.dart';
 
-class HomePageItemRow extends StatelessWidget {
-  final HomePageItem item;
+class HelpPageItemRow extends StatelessWidget {
+  final HelpPageItem item;
 
-  HomePageItemRow(this.item);
+  HelpPageItemRow(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +13,9 @@ class HomePageItemRow extends StatelessWidget {
       margin: new EdgeInsets.symmetric(vertical: 16.0),
       alignment: FractionalOffset.centerLeft,
       child: new Image(
-        image: new AssetImage("assets/img/citizen-app.png"),
+        image: new AssetImage(item.icon),
         height: 92.0,
-        width: 92.0,
+        width: 65.0,
       ),
     );
 
@@ -33,8 +34,17 @@ class HomePageItemRow extends StatelessWidget {
 
     final subHeaderTextStyle = regularTextStyle.copyWith(fontSize: 12.0);
 
+    void _launchCaller(int number) async {
+      var url = "tel:${number.toString()}";
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw "Could not place call";
+      }
+    }
+
     final itemCardContent = new Container(
-      margin: new EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+      margin: new EdgeInsets.fromLTRB(46.0, 16.0, 16.0, 16.0),
       constraints: new BoxConstraints.expand(),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,19 +55,14 @@ class HomePageItemRow extends StatelessWidget {
             style: headerTextStyle,
           ),
           new Container(height: 10.0),
-          new Text(item.description, style: subHeaderTextStyle),
-          new Container(
-              margin: new EdgeInsets.symmetric(vertical: 8.0),
-              height: 2.0,
-              width: 18.0,
-              color: Color(0xff00c6ff)),
+          new Text(item.number.toString(), style: subHeaderTextStyle),
         ],
       ),
     );
 
     final itemCard = new GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, item.routeId);
+        _launchCaller(item.number);
       },
       child: new Container(
         child: itemCardContent,

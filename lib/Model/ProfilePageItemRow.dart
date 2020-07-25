@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'HomePageItem.dart';
+import 'ProfilePageItem.dart';
 
-class HomePageItemRow extends StatelessWidget {
-  final HomePageItem item;
+class ProfilePageItemRow extends StatelessWidget {
+  final ProfilePageItem item;
 
-  HomePageItemRow(this.item);
+  ProfilePageItemRow(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +12,9 @@ class HomePageItemRow extends StatelessWidget {
       margin: new EdgeInsets.symmetric(vertical: 16.0),
       alignment: FractionalOffset.centerLeft,
       child: new Image(
-        image: new AssetImage("assets/img/citizen-app.png"),
+        image: new AssetImage(item.icon),
         height: 92.0,
-        width: 92.0,
+        width: 65.0,
       ),
     );
 
@@ -34,18 +34,18 @@ class HomePageItemRow extends StatelessWidget {
     final subHeaderTextStyle = regularTextStyle.copyWith(fontSize: 12.0);
 
     final itemCardContent = new Container(
-      margin: new EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+      margin: new EdgeInsets.fromLTRB(46.0, 16.0, 16.0, 16.0),
       constraints: new BoxConstraints.expand(),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           new Container(height: 4.0),
           new Text(
-            item.name,
+            item.heading,
             style: headerTextStyle,
           ),
           new Container(height: 10.0),
-          new Text(item.description, style: subHeaderTextStyle),
+          new Text(item.data, style: subHeaderTextStyle),
           new Container(
               margin: new EdgeInsets.symmetric(vertical: 8.0),
               height: 2.0,
@@ -55,10 +55,7 @@ class HomePageItemRow extends StatelessWidget {
       ),
     );
 
-    final itemCard = new GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, item.routeId);
-      },
+    final itemCard = new Container(
       child: new Container(
         child: itemCardContent,
         height: 124.0,
