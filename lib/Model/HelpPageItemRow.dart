@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'ProfilePageItem.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'HelpPageItem.dart';
 
-class ProfilePageItemRow extends StatelessWidget {
-  final ProfilePageItem item;
+class HelpPageItemRow extends StatelessWidget {
+  final HelpPageItem item;
 
-  ProfilePageItemRow(this.item);
+  HelpPageItemRow(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,15 @@ class ProfilePageItemRow extends StatelessWidget {
 
     final subHeaderTextStyle = regularTextStyle.copyWith(fontSize: 12.0);
 
+    void _launchCaller(int number) async {
+      var url = "tel:${number.toString()}";
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw "Could not place call";
+      }
+    }
+
     final itemCardContent = new Container(
       margin: new EdgeInsets.fromLTRB(46.0, 16.0, 16.0, 16.0),
       constraints: new BoxConstraints.expand(),
@@ -41,21 +51,19 @@ class ProfilePageItemRow extends StatelessWidget {
         children: <Widget>[
           new Container(height: 4.0),
           new Text(
-            item.heading,
+            item.name,
             style: headerTextStyle,
           ),
           new Container(height: 10.0),
-          new Text(item.data, style: subHeaderTextStyle),
-          new Container(
-              margin: new EdgeInsets.symmetric(vertical: 8.0),
-              height: 2.0,
-              width: 18.0,
-              color: Color(0xff00c6ff)),
+          new Text(item.number.toString(), style: subHeaderTextStyle),
         ],
       ),
     );
 
-    final itemCard = new Container(
+    final itemCard = new GestureDetector(
+      onTap: () {
+        _launchCaller(item.number);
+      },
       child: new Container(
         child: itemCardContent,
         height: 124.0,

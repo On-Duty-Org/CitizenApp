@@ -18,7 +18,7 @@ List<HomePageItem> items = [
   const HomePageItem(
       id: "3",
       name: "Instant Help",
-      description: "Help on phone and mail",
+      description: "Helpline numbers",
       routeId: "help"),
   const HomePageItem(
       id: "4",

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'ProfilePageItem.dart';
-import 'ProfilePageItemRow.dart';
+import 'HelpPageItem.dart';
+import 'HelpPageItemRow.dart';
 
-class ProfilePageBody extends StatelessWidget {
+class HelpPageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Expanded(
@@ -18,8 +18,7 @@ class ProfilePageBody extends StatelessWidget {
                     sliver: new SliverFixedExtentList(
                       itemExtent: 152.0,
                       delegate: new SliverChildBuilderDelegate(
-                        (context, index) =>
-                            new ProfilePageItemRow(items[index]),
+                        (context, index) => new HelpPageItemRow(items[index]),
                         childCount: items.length,
                       ),
                     ),
