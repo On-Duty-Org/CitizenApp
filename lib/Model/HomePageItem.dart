@@ -12,9 +12,14 @@ List<HomePageItem> items = [
     id: "1",
     name: "FIR",
     description: "Kow about the status of FIR",
+    routeId: "firstatus",
   ),
   const HomePageItem(
-      id: "2", name: "Missing", description: "Missing people information"),
+    id: "2",
+    name: "Missing",
+    description: "Missing people information",
+    routeId: "missing",
+  ),
   const HomePageItem(
       id: "3",
       name: "Instant Help",
