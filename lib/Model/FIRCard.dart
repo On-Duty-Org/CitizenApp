@@ -1,7 +1,6 @@
 import 'package:citizen_app/Screens/viewFIR.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import '../constants.dart';
 
 
@@ -24,6 +23,8 @@ class FIRCard extends StatefulWidget {
 
 class _FIRCardState extends State<FIRCard> {
   int currentStep = 0;
+  bool ActiveState1 =  false;
+  StepState state1 = StepState.indexed;
   bool ActiveState2 =  false;
   StepState state2 = StepState.indexed;
 
@@ -33,7 +34,7 @@ class _FIRCardState extends State<FIRCard> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('FIR'),
+          title: Text('FIR Status'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -55,15 +56,15 @@ class _FIRCardState extends State<FIRCard> {
                   },
                   steps: [
                     Step(
-                      title: Text('FIR Sent'),
-                      content: Text('FIR sent successfully'),
-                      state: StepState.complete,
-                      isActive: true
+                      title: Text('Pending'),
+                      content: Text('FIR sent successfully. Currently in pending state'),
+                      state: state1,
+                      isActive: ActiveState1
                     ),
                     Step(
-                      title: Text('FIR Received'),
+                      title: Text('Approved'),
                       content: Text(
-                          'FIR received by the nearest police station successfully'),
+                          'FIR approved by the nearest police station. Action will be taken soon.'),
                       isActive: ActiveState2,
                       state: state2
                     ),
@@ -120,10 +121,20 @@ class _FIRCardState extends State<FIRCard> {
             onSelected: (var value) {
               switch (value) {
                 case 1:
-                  setState(() {         //TODO. State of the fir. Make changes here
-                    currentStep = 0;
-                    ActiveState2 = false;
-                    state2 = StepState.indexed;
+                  setState(() {
+                    if(widget.data['status'] == 'pending') {
+                      currentStep = 0;
+                      state1 = StepState.complete;
+                      ActiveState1 = true;
+                      ActiveState2 = false;
+                      state2 = StepState.indexed;
+                    } else if(widget.data['status'] == 'approved'){
+                      currentStep = 1;
+                      state1 = StepState.complete;
+                      ActiveState1 = true;
+                      ActiveState2 = true;
+                      state2 = StepState.complete;
+                    }
                   });
                   _showStatusDialog(context);
                   break;
