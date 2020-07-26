@@ -11,7 +11,7 @@ List<HomePageItem> items = [
   const HomePageItem(
     id: "1",
     name: "FIR",
-    description: "Kow about the status of FIR",
+    description: "Know about the status of FIR",
     routeId: "firstatus",
   ),
   const HomePageItem(
