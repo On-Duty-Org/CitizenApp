@@ -3,13 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
+
 class FIRCard extends StatefulWidget {
   const FIRCard(
       {Key key,
-      @required this.id,
-      @required this.data,
-      @required this.date,
-      @required this.crime})
+        @required this.id,
+        @required this.data,
+        @required this.date,
+        @required this.crime})
       : super(key: key);
 
   final String id;
@@ -22,9 +23,9 @@ class FIRCard extends StatefulWidget {
 
 class _FIRCardState extends State<FIRCard> {
   int currentStep = 0;
-  bool ActiveState1 = false;
+  bool ActiveState1 =  false;
   StepState state1 = StepState.indexed;
-  bool ActiveState2 = false;
+  bool ActiveState2 =  false;
   StepState state2 = StepState.indexed;
 
   Future<void> _showStatusDialog(BuildContext context) async {
@@ -41,7 +42,7 @@ class _FIRCardState extends State<FIRCard> {
                   currentStep: currentStep,
                   controlsBuilder: (BuildContext context,
                       {VoidCallback onStepContinue,
-                      VoidCallback onStepCancel}) {
+                        VoidCallback onStepCancel}) {
                     return Row(
                       children: <Widget>[
                         Container(
@@ -56,16 +57,17 @@ class _FIRCardState extends State<FIRCard> {
                   steps: [
                     Step(
                         title: Text('Pending'),
-                        content: Text(
-                            'FIR sent successfully. Currently in pending state'),
+                        content: Text('FIR sent successfully. Currently in pending state'),
                         state: state1,
-                        isActive: ActiveState1),
+                        isActive: ActiveState1
+                    ),
                     Step(
                         title: Text('Approved'),
                         content: Text(
                             'FIR approved by the nearest police station. Action will be taken soon.'),
                         isActive: ActiveState2,
-                        state: state2),
+                        state: state2
+                    ),
                   ],
                 ),
               ],
@@ -84,6 +86,16 @@ class _FIRCardState extends State<FIRCard> {
     );
   }
 
+  Future<void> _showContactDialog (BuildContext context) {
+    return showDialog(context: context, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Text('Officer Tripathi is available right now'),
+          );
+        }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -91,8 +103,7 @@ class _FIRCardState extends State<FIRCard> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    FIR(id: widget.id, data: widget.data)));
+                builder: (BuildContext context) => FIR(id: widget.id, data: widget.data)));
       },
       child: Card(
         color: kActiveCardColor,
@@ -121,13 +132,13 @@ class _FIRCardState extends State<FIRCard> {
               switch (value) {
                 case 1:
                   setState(() {
-                    if (widget.data['status'] == 'pending') {
+                    if(widget.data['status'] == 'pending') {
                       currentStep = 0;
                       state1 = StepState.complete;
                       ActiveState1 = true;
                       ActiveState2 = false;
                       state2 = StepState.indexed;
-                    } else if (widget.data['status'] == 'approved') {
+                    } else if(widget.data['status'] == 'approved'){
                       currentStep = 1;
                       state1 = StepState.complete;
                       ActiveState1 = true;
@@ -137,6 +148,8 @@ class _FIRCardState extends State<FIRCard> {
                   });
                   _showStatusDialog(context);
                   break;
+                case 2:
+                  _showContactDialog(context);
               }
             },
             icon: Icon(Icons.arrow_drop_down),
@@ -145,6 +158,9 @@ class _FIRCardState extends State<FIRCard> {
                 value: 1,
                 child: Text('Status'),
               ),
+              PopupMenuDivider(),
+              PopupMenuItem(child: Text('Contact'),
+                  value: 2)
             ],
           ),
         ),

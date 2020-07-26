@@ -48,7 +48,7 @@ class Missing extends StatelessWidget {
                     ),
                   ),
                   onPress: () {
-                    Navigator.pushNamed(context, DisplayLost.id);
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => DisplayLost()));
                   },
                 ),
               ],

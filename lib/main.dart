@@ -10,6 +10,7 @@ import 'package:citizen_app/Screens/reportMissing.dart';
 
 void main() {
   runApp(new MaterialApp(
+    theme: ThemeData.dark(),
     title: "Citizen App",
     home: new HomePage(),
     routes: {
@@ -17,7 +18,8 @@ void main() {
       "missing": (context) => Missing(),
       "report": (context) => Report(),
       "profile": (context) => ProfilePage(),
-      "help": (context) => HelpPage()
+      "help": (context) => HelpPage(),
+      "found" : (context) => DisplayLost()
     },
   ));
 }
