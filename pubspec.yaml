@@ -81,6 +81,7 @@ flutter:
     - assets/img/FIRicon.png
     - assets/img/missing.jpg
     - assets/img/missing3.png
+    - assets/img/cyber.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -34,18 +34,24 @@ List<HelpPageItem> items = [
   ),
   const HelpPageItem(
     id: "5",
+    name: "Cyber Crime Helpline",
+    number: 155260,
+    icon: "assets/img/cyber.png",
+  ),
+  const HelpPageItem(
+    id: "6",
     name: "Missing Child and Women",
     number: 1094,
     icon: "assets/img/woman-2.png",
   ),
   const HelpPageItem(
-    id: "6",
+    id: "7",
     name: "Senior Citizen Helpline",
     number: 1291,
     icon: "assets/img/senior.png",
   ),
   const HelpPageItem(
-    id: "7",
+    id: "8",
     name: "Children In Difficult Situation",
     number: 1098,
     icon: "assets/img/child-1.png",
